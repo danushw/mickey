@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
+import SelectComp from './SelectComp';
 const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
     const [selected, setSelected] = useState(mickeyMouses[0].id);
 
@@ -10,13 +11,14 @@ const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
     };
     return (
         <>
-            <Select defaultValue={mickeyMouses[0]}>
+            {/* <Select defaultValue={mickeyMouses[0]}>
                 {mickeyMouses.map((mickey) => (
                     <Option key={mickey.id} value={mickey.id}>
                         {mickey.name}
                     </Option>
                 ))}
-            </Select>
+            </Select> */}
+            <SelectComp values={mickeyMouses} onChange={onSelect} />
         </>
     );
 };

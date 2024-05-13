@@ -6,11 +6,11 @@ const Home = () => {
     return (
         <Box>
             <Stack
-                spacing={2}
                 justifyContent='space-between'
+                alignItems='center'
                 sx={{
                     bgcolor: 'lightblue',
-                    justifyContent: 'center',
+
                     alignItems: 'center',
                     width: '100%',
                 }}

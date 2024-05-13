@@ -4,11 +4,29 @@ import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { CssTransition } from '@mui/base/Transitions';
+import { PopupContext } from '@mui/base/Unstable_Popup';
 
-const Select = React.forwardRef(function Select(props, ref) {
+export default function UnstyledSelectIntroduction({ values, onChange }) {
+    return (
+        <Select
+            style={{ height: '50%' }}
+            defaultValue={values[0].id}
+            onChange={onChange}
+        >
+            {values.map((value) => (
+                <Option key={value.id} value={value.id}>
+                    {value.name}
+                </Option>
+            ))}
+        </Select>
+    );
+}
+
+const Select = React.forwardRef(function CustomSelect(props, ref) {
     const slots = {
-        root: CustomButton,
-        listbox: Listbox,
+        root: StyledButton,
+        listbox: AnimatedListbox,
         popup: Popup,
         ...props.slots,
     };
@@ -16,15 +34,18 @@ const Select = React.forwardRef(function Select(props, ref) {
     return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
-export default function SelectComp() {
-    return (
-        <Select defaultValue={1}>
-            <Option value={10}>Ten</Option>
-            <Option value={20}>Twenty</Option>
-            <Option value={30}>Thirty</Option>
-        </Select>
-    );
-}
+Select.propTypes = {
+    /**
+     * The components used for each slot inside the Select.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    slots: PropTypes.shape({
+        listbox: PropTypes.elementType,
+        popup: PropTypes.elementType,
+        root: PropTypes.elementType,
+    }),
+};
 
 const blue = {
     100: '#DAECFF',
@@ -49,24 +70,23 @@ const grey = {
     900: '#1C2025',
 };
 
-const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+const Button = React.forwardRef(function Button(props, ref) {
     const { ownerState, ...other } = props;
     return (
-        <StyledButton type='button' {...other} ref={ref}>
+        <button type='button' {...other} ref={ref}>
             {other.children}
             <UnfoldMoreRoundedIcon />
-        </StyledButton>
+        </button>
     );
 });
 
-CustomButton.propTypes = {
+Button.propTypes = {
     children: PropTypes.node,
     ownerState: PropTypes.object.isRequired,
 };
 
-const StyledButton = styled('button', { shouldForwardProp: () => true })(
+const StyledButton = styled(Button, { shouldForwardProp: () => true })(
     ({ theme }) => `
-  position: relative;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -78,6 +98,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  position: relative;
   box-shadow: 0px 2px 4px ${
       theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
@@ -126,8 +147,55 @@ const Listbox = styled('ul')(
   box-shadow: 0px 2px 4px ${
       theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
+  
+  .closed & {
+    opacity: 0;
+    transform: scale(0.95, 0.8);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  
+  .open & {
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
+  }
+
+  .placement-top & {
+    transform-origin: bottom;
+  }
+
+  .placement-bottom & {
+    transform-origin: top;
+  }
   `
 );
+
+const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+    const { ownerState, ...other } = props;
+    const popupContext = React.useContext(PopupContext);
+
+    if (popupContext == null) {
+        throw new Error(
+            'The `AnimatedListbox` component cannot be rendered outside a `Popup` component'
+        );
+    }
+
+    const verticalPlacement = popupContext.placement.split('-')[0];
+
+    return (
+        <CssTransition
+            className={`placement-${verticalPlacement}`}
+            enterClassName='open'
+            exitClassName='closed'
+        >
+            <Listbox {...other} ref={ref} />
+        </CssTransition>
+    );
+});
+
+AnimatedListbox.propTypes = {
+    ownerState: PropTypes.object.isRequired,
+};
 
 const Option = styled(BaseOption)(
     ({ theme }) => `
@@ -153,7 +221,7 @@ const Option = styled(BaseOption)(
   &:focus-visible {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
-
+  
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};

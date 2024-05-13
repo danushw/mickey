@@ -12,18 +12,21 @@ const MouseContainer = ({ mickeyMouses }) => {
     };
 
     return (
-        <Box>
-            <Stack direction='row' spacing={20} justifyContent='space-between'>
-                <MickeyDropdown
-                    mickeyMouses={mickeyMouses}
-                    onSelect={handleSelect}
-                />
-                {/* <MickeyImage
-                    selectedMickey={selectedMickey}
-                    mickeyMouses={mickeyMouses}
-                /> */}
-            </Stack>
-        </Box>
+        <Stack
+            direction='row'
+            spacing={20}
+            justifyContent='space-between'
+            alignItems='center'
+        >
+            <MickeyDropdown
+                mickeyMouses={mickeyMouses}
+                onSelect={handleSelect}
+            />
+            <MickeyImage
+                selectedMickey={selectedMickey}
+                mickeyMouses={mickeyMouses}
+            />
+        </Stack>
     );
 };
 
