@@ -11,14 +11,19 @@ function App() {
 
     return (
         <Router>
-            <Sidebar />
-            <>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/about' element={<About />} />
-                    <Route path='/contact' element={<Contact />} />
-                </Routes>
-            </>
+            {/* <Stack direction='row' spacing={2} justifyContent='space-between'> */}
+            <Box display='flex' bgcolor='black' height='100vh'>
+                <Box flex='1'>
+                    <Sidebar />
+                </Box>
+                <Box flex='7'>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/contact' element={<Contact />} />
+                    </Routes>
+                </Box>
+            </Box>
         </Router>
     );
 }

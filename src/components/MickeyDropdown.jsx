@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 import SelectComp from './SelectComp';
+
 const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
     const [selected, setSelected] = useState(mickeyMouses[0].id);
 
     const handleChange = (event) => {
-        setSelected(event.target.value);
-        onSelect(event.target.value);
+        console.log(event.target);
+        // setSelected(event.target.value);
+        onSelect(event);
     };
     return (
         <>
@@ -18,7 +20,12 @@ const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
                     </Option>
                 ))}
             </Select> */}
-            <SelectComp values={mickeyMouses} onChange={onSelect} />
+            <SelectComp values={mickeyMouses} onChange={handleChange} />
+            {/* <BasicSelect
+                values={mickeyMouses}
+                onSelect={onSelect}
+                title='Name'
+            /> */}
         </>
     );
 };

@@ -7,18 +7,36 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { CssTransition } from '@mui/base/Transitions';
 import { PopupContext } from '@mui/base/Unstable_Popup';
 
-export default function UnstyledSelectIntroduction({ values, onChange }) {
+export default function UnstyledSelectIntroduction({
+    values,
+    onChange,
+    title,
+}) {
+    const [selectedValue, setSelectedValue] = React.useState(0);
+
+    const handleChange = (event) => {
+        console.log('SelectComp handleChange func');
+        console.log(event);
+        // const id = event.target.value;
+        // console.log('target.value= ' + event.currentTarget);
+        // setSelectedValue(id);
+        // console.log(selectedValue);
+        onChange(event);
+    };
+
     return (
         <Select
-            style={{ height: '50%' }}
-            defaultValue={values[0].id}
-            onChange={onChange}
+            style={{ height: '50px' }}
+            // defaultValue={values[0].id}
+            onChange={(_, newValue) => handleChange(newValue)}
         >
-            {values.map((value) => (
-                <Option key={value.id} value={value.id}>
-                    {value.name}
-                </Option>
-            ))}
+            {values.map((value) => {
+                return (
+                    <Option key={value.id} value={value.id}>
+                        {value.name}
+                    </Option>
+                );
+            })}
         </Select>
     );
 }
