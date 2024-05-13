@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MickeyDropdown from './MickeyDropdown';
 import MickeyImage from './MickeyImage';
+import { Box, Stack } from '@mui/material';
 
 const MouseContainer = ({ mickeyMouses }) => {
     const [selectedMickey, setSelectedMickey] = useState(mickeyMouses[0].id);
@@ -11,20 +12,18 @@ const MouseContainer = ({ mickeyMouses }) => {
     };
 
     return (
-        <div className='mouse-info'>
-            <div className='drop-down-menu'>
+        <Box>
+            <Stack direction='row' spacing={20} justifyContent='space-between'>
                 <MickeyDropdown
                     mickeyMouses={mickeyMouses}
                     onSelect={handleSelect}
                 />
-            </div>
-            <div className='mouse-image'>
-                <MickeyImage
+                {/* <MickeyImage
                     selectedMickey={selectedMickey}
                     mickeyMouses={mickeyMouses}
-                />
-            </div>
-        </div>
+                /> */}
+            </Stack>
+        </Box>
     );
 };
 
