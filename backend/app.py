@@ -1,30 +1,22 @@
-import datetime   # This will be needed later
-import os
 
+import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from bson import ObjectId
 
-# Load config from a .env file:
 load_dotenv()
 MONGODB_URI = os.environ['MONGODB_URI']
 
-# Connect to your MongoDB cluster:
 client = MongoClient(MONGODB_URI)
-
 dbs = client.list_database_names();
 mickeys_db = client.mickeys
 collections = mickeys_db.list_collection_names();
-print(collections)
+#print(collections)
 
 app = Flask(__name__)
 CORS(app)
-
-# List all the databases in the cluster:
-# for db_info in client.list_database_names():
-#    print(db_info)
 
 def insert_doc_db(name, description, date):
     collection = mickeys_db.mickeys
@@ -68,8 +60,8 @@ def get_all_mickeys():
 
 @app.route("/mickeys/", methods=["POST"])
 def create_mickey_mouse():
-    # Access data from request body
-    data = request.get_json()  # Assumes JSON data in request body
+    
+    data = request.get_json()  
     if not data:
         return jsonify({"error": "Missing data in request body"}), 400
 
