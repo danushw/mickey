@@ -18,7 +18,6 @@ const Sidebar = () => {
             bgcolor='skyblue'
             height='100vh'
             flex={1}
-            p={2}
             sx={{ display: { xs: 'none', sm: 'block' } }}
         >
             <List>

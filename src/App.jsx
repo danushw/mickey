@@ -7,12 +7,10 @@ import Contact from './components/Contact';
 import { Box, Stack } from '@mui/material';
 
 function App() {
-    // const [count, setCount] = useState(0);
-
     return (
         <Router>
             {/* <Stack direction='row' spacing={2} justifyContent='space-between'> */}
-            <Box display='flex' bgcolor='black' height='100vh'>
+            <Box display='flex'>
                 <Box flex='1'>
                     <Sidebar />
                 </Box>

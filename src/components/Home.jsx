@@ -8,10 +8,12 @@ const Home = () => {
             <Stack
                 justifyContent='space-between'
                 alignItems='center'
-                height='80vh'
-                sx={{
-                    bgcolor: 'purple',
-                }}
+                height='100vh'
+                sx={
+                    {
+                        // bgcolor: 'purple',
+                    }
+                }
             >
                 <MickeyContainer mickeyMouses={mickeyMouses} />
                 <Table mickeyMouses={mickeyMouses} />
