@@ -1,8 +1,23 @@
+import { useState, useEffect } from 'react';
 import MickeyContainer from './MickeyContainer';
 import Table from './DataTable.jsx';
-import mickeyMouses from '../data.js';
 import { Box, Stack } from '@mui/material';
+import { fetchMickeys } from '../assets/api.js';
+
+// import { mickeyMouses } from '../assets/data.js';
 const Home = () => {
+    const [mickeyMouses, setMickeyMouses] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const fetchedMickeyMouses = await fetchMickeys();
+
+            setMickeyMouses(fetchedMickeyMouses);
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <Box>
             <Stack

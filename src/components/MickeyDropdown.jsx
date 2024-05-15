@@ -4,7 +4,7 @@ import { Option } from '@mui/base/Option';
 import SelectComp from './SelectComp';
 
 const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
-    const [selected, setSelected] = useState(mickeyMouses[0].id);
+    const [selected, setSelected] = useState(0);
 
     const handleChange = (event) => {
         console.log(event.target);

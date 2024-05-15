@@ -1,6 +1,6 @@
 const About = () => {
     return (
-        <div>
+        <div style={{ alignItems: 'center' }}>
             <h1>About</h1>
         </div>
     );
