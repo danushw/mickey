@@ -25,3 +25,5 @@ dist-ssr
 
 venv/
 .env
+/backend/venv/
+/backend/.env

@@ -1,10 +1,12 @@
 
 import os
+import datetime
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from bson import ObjectId
+
 
 load_dotenv()
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -18,12 +20,16 @@ collections = mickeys_db.list_collection_names();
 app = Flask(__name__)
 CORS(app)
 
-def insert_doc_db(name, description, date):
+def insert_doc_db(name, description, date, lat, lng):
     collection = mickeys_db.mickeys
     new_document = {
         "name" : name,
         "description" : description,
-        "date": datetime.datetime.strptime(date, '%Y-%m-%d')
+        "date": datetime.datetime.strptime(date, '%Y-%m-%d'),
+        "geolocation": {
+            "lat": lat,
+            "lng": lng
+        }
     }
     inserted_id = collection.insert_one(new_document).inserted_id
     print(inserted_id)
@@ -68,10 +74,18 @@ def create_mickey_mouse():
     name = data.get("name")
     desc = data.get("description")
     date = data.get("date")
+    geolocation = data.get("geolocation")
+    
+    if not geolocation:
+        return jsonify({"error": "Missing geolocation in request body"}), 400
+
+    lat = geolocation.get("lat")
+    lng = geolocation.get("lng")
+
     if not name or not desc or not date:
         return jsonify({"error": "Missing name or age or date in request body"}), 400
 
-    inserted_id = insert_doc_db(name, desc, date)
+    inserted_id = insert_doc_db(name, desc, date, lat, lng)
   
     return jsonify({"message": "Mickey Mouse created successfully!", "id": inserted_id}), 201
 
