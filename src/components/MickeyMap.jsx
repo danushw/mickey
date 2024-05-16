@@ -1,9 +1,4 @@
-import {
-    APIProvider,
-    Map,
-    AdvancedMarker,
-    Pin,
-} from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import MickeyPin from './MickeyPin';
 const MickeyMap = ({ mickeyMouses }) => {
     const apiSKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -37,14 +32,6 @@ const MickeyMap = ({ mickeyMouses }) => {
                             </AdvancedMarker>
                         );
                     })}
-                    {/* <AdvancedMarker
-                        position={{
-                            lat: location2.lat,
-                            lng: location2.lng,
-                        }}
-                    >
-                        <Pin />
-                    </AdvancedMarker> */}
                 </Map>
             </APIProvider>
         </div>
