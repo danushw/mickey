@@ -4,9 +4,10 @@ import {
     AdvancedMarker,
     Pin,
 } from '@vis.gl/react-google-maps';
-// const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
 const MickeyMap = ({ mickeyMouses }) => {
+    const apiSKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    console.log(apiSKey);
     return (
         <div
             style={{
@@ -14,10 +15,7 @@ const MickeyMap = ({ mickeyMouses }) => {
                 height: '50 vh',
             }}
         >
-            <APIProvider
-                apiKey='AIzaSyD5ItELwp3G7ObF8Pjy65fky9dmnwXHiGQ'
-                libraries={['marker']}
-            >
+            <APIProvider apiKey={apiSKey} libraries={['marker']}>
                 <Map
                     mapId={'62093adbc5394ed'}
                     style={{ width: '80vh', height: '50vh' }}
