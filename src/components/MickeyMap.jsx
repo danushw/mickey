@@ -4,7 +4,7 @@ import {
     AdvancedMarker,
     Pin,
 } from '@vis.gl/react-google-maps';
-
+import MickeyPin from './MickeyPin';
 const MickeyMap = ({ mickeyMouses }) => {
     const apiSKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     console.log(apiSKey);
@@ -19,8 +19,8 @@ const MickeyMap = ({ mickeyMouses }) => {
                 <Map
                     mapId={'62093adbc5394ed'}
                     style={{ width: '80vh', height: '50vh' }}
-                    defaultCenter={{ lat: 32.08371, lng: 34.78205 }}
-                    defaultZoom={14}
+                    defaultCenter={{ lat: 32.084, lng: 34.78205 }}
+                    defaultZoom={14.5}
                     gestureHandling={'greedy'}
                     disableDefaultUI={true}
                 >
@@ -32,7 +32,9 @@ const MickeyMap = ({ mickeyMouses }) => {
                                     lat: parseFloat(mickey.geolocation.lat),
                                     lng: parseFloat(mickey.geolocation.lng),
                                 }}
-                            ></AdvancedMarker>
+                            >
+                                <MickeyPin />
+                            </AdvancedMarker>
                         );
                     })}
                     {/* <AdvancedMarker
