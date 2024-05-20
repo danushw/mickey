@@ -4,7 +4,6 @@ import Table from './DataTable.jsx';
 import { Box, Stack } from '@mui/material';
 import { fetchMickeys } from '../assets/api.js';
 
-// import { mickeyMouses } from '../assets/data.js';
 const Home = () => {
     const [mickeyMouses, setMickeyMouses] = useState([]);
 

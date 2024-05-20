@@ -57,14 +57,14 @@ def delete_mickey_by_id_db(id):
         return False
 
 
-@app.route("/mickeys/", methods=["GET"])
+@app.route("/api/mickeys/", methods=["GET"])
 def get_all_mickeys():
     mickeys = get_all_mickeys_db()
     if not mickeys:
          return jsonify({"message": "No Mickey Mouse entries found"}), 204
     return jsonify(mickeys)
 
-@app.route("/mickeys/", methods=["POST"])
+@app.route("/api/mickeys/", methods=["POST"])
 def create_mickey_mouse():
     
     data = request.get_json()  
@@ -89,7 +89,7 @@ def create_mickey_mouse():
   
     return jsonify({"message": "Mickey Mouse created successfully!", "id": inserted_id}), 201
 
-@app.route("/mickeys/<string:id>", methods=["DELETE"])
+@app.route("/api/mickeys/<string:id>", methods=["DELETE"])
 def delete_mickey(id):
  
     if delete_mickey_by_id_db(id):

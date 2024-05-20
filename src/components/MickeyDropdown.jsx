@@ -7,6 +7,11 @@ const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
         // setSelected(event.target.value);
         onSelect(event);
     };
+
+    if (!mickeyMouses || mickeyMouses.length === 0) {
+        return <h2>Backend Error: No Mickey Mice Data Available</h2>;
+    }
+
     return (
         <Stack spacing={4} paddingTop={4} alignItems='center'>
             <SelectComp values={mickeyMouses} onChange={handleChange} />
@@ -15,13 +20,3 @@ const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
     );
 };
 export default MickeyDropdown;
-
-{
-    /* <select value={selected} onChange={handleChange}>
-{mickeyMouses.map((mickey) => (
-    <option key={mickey.id} value={mickey.id}>
-        {mickey.name}
-    </option>
-))}
-</select> */
-}
