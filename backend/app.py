@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from bson import ObjectId
 
-
+print("starting mickey backend...")
 load_dotenv()
 MONGODB_URI = os.environ['MONGODB_URI']
 

@@ -28,7 +28,7 @@ const MickeyMap = ({ mickeyMouses }) => {
                                     lng: parseFloat(mickey.geolocation.lng),
                                 }}
                             >
-                                <MickeyPin />
+                                {/* <MickeyPin /> */}
                             </AdvancedMarker>
                         );
                     })}
