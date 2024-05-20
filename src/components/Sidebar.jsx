@@ -27,7 +27,7 @@ const Sidebar = () => {
                     className={location.pathname === '/' ? 'active' : ''}
                 >
                     <ListItem disablePadding>
-                        <ListItemButton component='a'>
+                        <ListItemButton component='span'>
                             <ListItemIcon>
                                 <Home />
                             </ListItemIcon>
@@ -41,7 +41,7 @@ const Sidebar = () => {
                     className={location.pathname === '/about' ? 'active' : ''}
                 >
                     <ListItem disablePadding>
-                        <ListItemButton component='a'>
+                        <ListItemButton component='span'>
                             <ListItemIcon>
                                 <InfoIcon />
                             </ListItemIcon>
@@ -55,7 +55,7 @@ const Sidebar = () => {
                     className={location.pathname === '/contact' ? 'active' : ''}
                 >
                     <ListItem disablePadding>
-                        <ListItemButton component='a'>
+                        <ListItemButton component='span'>
                             <ListItemIcon>
                                 <EmailIcon />
                             </ListItemIcon>

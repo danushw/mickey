@@ -1,32 +1,17 @@
-import { useState } from 'react';
-import { Select } from '@mui/base/Select';
-import { Option } from '@mui/base/Option';
 import SelectComp from './SelectComp';
-
+import MickeyMap from './MickeyMap';
+import { Stack } from '@mui/material';
 const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
-    const [selected, setSelected] = useState(mickeyMouses[0].id);
-
     const handleChange = (event) => {
         console.log(event.target);
         // setSelected(event.target.value);
         onSelect(event);
     };
     return (
-        <>
-            {/* <Select defaultValue={mickeyMouses[0]}>
-                {mickeyMouses.map((mickey) => (
-                    <Option key={mickey.id} value={mickey.id}>
-                        {mickey.name}
-                    </Option>
-                ))}
-            </Select> */}
+        <Stack spacing={4} paddingTop={4} alignItems='center'>
             <SelectComp values={mickeyMouses} onChange={handleChange} />
-            {/* <BasicSelect
-                values={mickeyMouses}
-                onSelect={onSelect}
-                title='Name'
-            /> */}
-        </>
+            <MickeyMap mickeyMouses={mickeyMouses} />
+        </Stack>
     );
 };
 export default MickeyDropdown;

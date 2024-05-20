@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import MickeyDropdown from './MickeyDropdown';
 import MickeyImage from './MickeyImage';
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 
 const MouseContainer = ({ mickeyMouses }) => {
-    const [selectedMickey, setSelectedMickey] = useState(mickeyMouses[0].id);
+    const [selectedMickey, setSelectedMickey] = useState(1);
 
     const handleSelect = (id) => {
-        console.log('selected mouse = ' + id);
-        setSelectedMickey(id);
+        const selectedIndex = mickeyMouses.findIndex(
+            (mouse) => mouse._id === id
+        );
+
+        setSelectedMickey(selectedIndex + 1);
     };
 
     return (
@@ -17,6 +20,7 @@ const MouseContainer = ({ mickeyMouses }) => {
             spacing={20}
             justifyContent='space-between'
             alignItems='center'
+            width='90%'
         >
             <MickeyDropdown
                 mickeyMouses={mickeyMouses}

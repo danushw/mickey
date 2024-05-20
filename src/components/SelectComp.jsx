@@ -26,13 +26,13 @@ export default function UnstyledSelectIntroduction({
 
     return (
         <Select
-            style={{ height: '50px' }}
+            style={{ height: '5vh', width: '40vh' }}
             // defaultValue={values[0].id}
             onChange={(_, newValue) => handleChange(newValue)}
         >
             {values.map((value) => {
                 return (
-                    <Option key={value.id} value={value.id}>
+                    <Option key={value._id} value={value._id}>
                         {value.name}
                     </Option>
                 );
