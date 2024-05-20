@@ -17,6 +17,10 @@ const Home = () => {
         fetchData();
     }, []);
 
+    if (!mickeyMouses || mickeyMouses.length === 0) {
+        return <h2>Fetching Data...</h2>;
+    }
+
     return (
         <Box>
             <Stack
