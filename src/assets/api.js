@@ -3,6 +3,7 @@ import axios from 'axios';
 const origin = window.location.origin;
 const url = origin + '/api/mickeys/';
 
+console.log(url);
 export const fetchMickeys = async () => {
     try {
         const res = await axios.get(url);
