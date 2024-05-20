@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 
 function App() {
     return (

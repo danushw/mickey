@@ -26,7 +26,7 @@ export default function UnstyledSelectIntroduction({
 
     return (
         <Select
-            style={{ height: '50px' }}
+            style={{ height: '5vh', width: '40vh' }}
             // defaultValue={values[0].id}
             onChange={(_, newValue) => handleChange(newValue)}
         >

@@ -6,6 +6,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+};
 const DataTable = ({ mickeyMouses }) => {
     return (
         <TableContainer component={Paper}>
@@ -20,7 +24,7 @@ const DataTable = ({ mickeyMouses }) => {
                 </TableHead>
 
                 <TableBody>
-                    {mickeyMouses.map((mickey) => (
+                    {mickeyMouses.map((mickey, index) => (
                         <TableRow
                             key={mickey._id}
                             sx={{
@@ -30,12 +34,12 @@ const DataTable = ({ mickeyMouses }) => {
                             }}
                         >
                             <TableCell component='th' scope='row'>
-                                {mickey.id}
+                                {index + 1}
                             </TableCell>
 
                             <TableCell>{mickey.name}</TableCell>
                             <TableCell>{mickey.description}</TableCell>
-                            <TableCell>{mickey.date}</TableCell>
+                            <TableCell>{formatDate(mickey.date)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
