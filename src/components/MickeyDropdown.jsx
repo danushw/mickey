@@ -1,17 +1,30 @@
 import SelectComp from './SelectComp';
 import MickeyMap from './MickeyMap';
 import { Stack } from '@mui/material';
+import { useState } from 'react';
 const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
     const handleChange = (event) => {
-        console.log(event.target);
+        const selectedMickey = mickeyMouses.find(
+            (mickey) => mickey._id === event
+        );
+        const location = {
+            lat: parseFloat(selectedMickey.geolocation.lat),
+            lng: parseFloat(selectedMickey.geolocation.lng),
+        };
         // setSelected(event.target.value);
+        setSelectedLocation(location);
         onSelect(event);
     };
 
     return (
         <Stack spacing={4} paddingTop={4} alignItems='center'>
             <SelectComp values={mickeyMouses} onChange={handleChange} />
-            <MickeyMap mickeyMouses={mickeyMouses} />
+            <MickeyMap
+                mickeyMouses={mickeyMouses}
+                selectedLocation={selectedLocation}
+            />
         </Stack>
     );
 };

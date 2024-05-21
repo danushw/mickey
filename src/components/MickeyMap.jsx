@@ -1,6 +1,7 @@
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import MickeyPin from './MickeyPin';
-const MickeyMap = ({ mickeyMouses }) => {
+
+const MickeyMap = ({ mickeyMouses, selectedLocation }) => {
     const apiSKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
     return (
@@ -14,7 +15,7 @@ const MickeyMap = ({ mickeyMouses }) => {
                 <Map
                     mapId={'62093adbc5394ed'}
                     style={{ width: '80vh', height: '50vh' }}
-                    defaultCenter={{ lat: 32.084, lng: 34.78205 }}
+                    center={selectedLocation || { lat: 32.084, lng: 34.78205 }}
                     defaultZoom={14}
                     gestureHandling={'greedy'}
                     disableDefaultUI={true}

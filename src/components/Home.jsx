@@ -1,24 +1,55 @@
 import { useState, useEffect } from 'react';
-import MickeyContainer from './MickeyContainer';
-import Table from './DataTable.jsx';
 import { Box, Stack } from '@mui/material';
 import { fetchMickeys } from '../assets/api.js';
+import { CircularProgress } from '@mui/material';
+import MickeyContainer from './MickeyContainer';
+import Table from './DataTable.jsx';
 
 const Home = () => {
     const [mickeyMouses, setMickeyMouses] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedMickeyMouses = await fetchMickeys();
+            try {
+                const fetchedMickeyMouses = await fetchMickeys();
 
-            setMickeyMouses(fetchedMickeyMouses);
+                setMickeyMouses(fetchedMickeyMouses);
+            } catch (err) {
+                setError(err.message);
+                // console.error(err.message);
+            } finally {
+                setIsLoading(false);
+            }
         };
 
         fetchData();
     }, []);
 
-    if (!mickeyMouses || mickeyMouses.length === 0) {
-        return <h2>Fetching Data...</h2>;
+    if (isLoading) {
+        return (
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                height='100vh'
+            >
+                <CircularProgress size={80} />
+            </Box>
+        );
+    }
+
+    if (error) {
+        return (
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                height='100vh'
+            >
+                <p>Error: {error}</p>
+            </Box>
+        );
     }
 
     return (

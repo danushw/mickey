@@ -11,16 +11,18 @@ export default function UnstyledSelectIntroduction({
     values,
     onChange,
     title,
+    placeholder = 'Select an option',
 }) {
     const [selectedValue, setSelectedValue] = React.useState(0);
 
     const handleChange = (event) => {
         console.log('SelectComp handleChange func');
-        console.log(event);
+        console.log('event = ' + event);
         // const id = event.target.value;
         // console.log('target.value= ' + event.currentTarget);
         // setSelectedValue(id);
         // console.log(selectedValue);
+        setSelectedValue(event);
         onChange(event);
     };
 
@@ -28,15 +30,17 @@ export default function UnstyledSelectIntroduction({
         <Select
             style={{ height: '5vh', width: '40vh' }}
             // defaultValue={values[0].id}
+            // value={selectedValue}
             onChange={(_, newValue) => handleChange(newValue)}
         >
-            {values.map((value) => {
-                return (
-                    <Option key={value._id} value={value._id}>
-                        {value.name}
-                    </Option>
-                );
-            })}
+            <Option value='' disabled>
+                <em>{placeholder}</em>
+            </Option>
+            {values.map((value) => (
+                <Option key={value._id} value={value._id}>
+                    {value.name}
+                </Option>
+            ))}
         </Select>
     );
 }
