@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const origin = window.location.origin;
-const url = 'http://127.0.0.1:5000/api/mickeys/';
+const url = 'http://127.0.0.1:8000/public/mickeys/';
 
 console.log(url);
 export const fetchMickeys = async () => {

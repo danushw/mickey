@@ -10,8 +10,8 @@ const MickeyDropdown = ({ mickeyMouses, onSelect }) => {
             (mickey) => mickey._id === event
         );
         const location = {
-            lat: parseFloat(selectedMickey.geolocation.lat),
-            lng: parseFloat(selectedMickey.geolocation.lng),
+            lat: parseFloat(selectedMickey.lat),
+            lng: parseFloat(selectedMickey.lng),
         };
         // setSelected(event.target.value);
         setSelectedLocation(location);

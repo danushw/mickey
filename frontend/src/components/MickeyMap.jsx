@@ -25,8 +25,8 @@ const MickeyMap = ({ mickeyMouses, selectedLocation }) => {
                             <AdvancedMarker
                                 key={mickey._id}
                                 position={{
-                                    lat: parseFloat(mickey.geolocation.lat),
-                                    lng: parseFloat(mickey.geolocation.lng),
+                                    lat: parseFloat(mickey.lat),
+                                    lng: parseFloat(mickey.lng),
                                 }}
                             >
                                 {/* <MickeyPin /> */}
