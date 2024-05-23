@@ -1,6 +1,7 @@
-
 import os
 import datetime
+import requests
+
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
@@ -9,7 +10,9 @@ from bson import ObjectId
 
 print("starting mickey backend...")
 load_dotenv()
+
 MONGODB_URI = os.environ['MONGODB_URI']
+GEO_URL = 'http://localhost:5002/api/geolocation/'
 
 client = MongoClient(MONGODB_URI)
 dbs = client.list_database_names();
@@ -58,8 +61,27 @@ def delete_mickey_by_id_db(id):
 def get_all_mickeys():
     mickeys = get_all_mickeys_db()
     if not mickeys:
-         return jsonify({"message": "No Mickey Mouse entries found"}), 204
-    return jsonify(mickeys)
+        return jsonify({"message": "No Mickey Mouse entries found"}), 204
+
+    combined_data = []
+    for mickey in mickeys:
+        mickey_id = mickey['_id']
+        try:
+            res_geo = requests.get(f"{GEO_URL}{mickey_id}")
+            if res_geo.status_code == 200:
+                geolocation = res_geo.json()
+                mickey['lat'] = geolocation.get('lat')
+                mickey['lng'] = geolocation.get('lng')
+            else:
+                mickey['lat'] = None
+                mickey['lng'] = None
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            mickey['lat'] = None
+            mickey['lng'] = None
+        combined_data.append(mickey)
+
+    return jsonify(combined_data), 200
 
 @app.route("/api/mickeys/", methods=["POST"])
 def create_mickey_mouse():
