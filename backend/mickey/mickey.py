@@ -110,4 +110,4 @@ def delete_mickey(id):
         return jsonify({"error": f"Mickey Mouse with ID {id} not found"}), 404
     
 if __name__ == "__main__":
-    app.run(host='localhost', port=5001, debug=True)
+    app.run(host='localhost', port=5000, debug=True)
