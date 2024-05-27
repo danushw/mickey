@@ -15,7 +15,7 @@ Welcome to the **Mickey in the World** project! This project is a learning journ
 
 -   **Interactive Maps:** Integration with Google Maps API for location-based features.
 -   **Material UI:** Utilization of Material UI for a modern and responsive user interface.
--   **RESTful API:** A robust backend API built with Flask.
+-   **API:** A backend API built with Flask.
 -   **Microservices Architecture:** Decoupled services for better scalability and maintainability.
 -   **Secure Deployment:** AWS Gateway routing requests to private EC2 instances.
 
