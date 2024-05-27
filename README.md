@@ -7,7 +7,7 @@ Welcome to the **Mickey in the World** project! This project is a learning journ
 **Mickey in the World** is a project aimed at exploring the integration of various technologies. The project involves:
 
 -   A React frontend enhanced with Material UI and Google Maps API.
--   A Flask backend providing RESTful API services, architected as microservices to ensure modularity, scalability, and ease of maintenance.
+-   A Flask backend providing API services, architected as microservices to ensure modularity, scalability, and ease of maintenance.
 -   MongoDB as the database.
 -   Deployment on AWS using AWS Gateway and EC2 instances.
 
