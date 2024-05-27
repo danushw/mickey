@@ -4,7 +4,7 @@ Welcome to the **Mickey in the World** project! This project is a learning journ
 
 ## Introduction
 
-**Mickey in the World** is a project aimed at exploring the integration of various technologies to create a seamless user experience. The project involves:
+**Mickey in the World** is a project aimed at exploring the integration of various technologies. The project involves:
 
 -   A React frontend enhanced with Material UI and Google Maps API.
 -   A Flask backend providing RESTful API services, architected as microservices to ensure modularity, scalability, and ease of maintenance.
