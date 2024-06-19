@@ -48,10 +48,3 @@ const DataTable = ({ mickeyMouses }) => {
     );
 };
 export default DataTable;
-
-// <tr key={mickey.id}>
-//     <td>{mickey.id}</td>
-//     <td>{mickey.name}</td>
-//     <td>{mickey.description}</td>
-//     <td>{mickey.date}</td>
-// </tr>
